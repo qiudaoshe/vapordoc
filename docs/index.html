@@ -8,24 +8,63 @@
   <meta name="description" content="Description">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
+  <link rel="stylesheet" href="//unpkg.com/docsify-copy-code/styles.css">
+
 </head>
 
 <body>
   <div id="app"></div>
-  
+
   <script>
     window.$docsify = {
       name: 'Vapor中文文档',
-      repo: '',
-
-      // load from _sidebar.md
+      repo: 'https://github.com/imhomin/vapordoc',
       loadSidebar: true,
-      // load from summary.md
+      maxLevel: 10,
+      auto2top: true,
       loadSidebar: 'summary.md',
+      search: {
+        noData: {
+          '/': '没有结果!',
+        },
+        paths: 'auto',
+        placeholder: {
+          '': '搜索',
+        }
+      },
+      formatUpdated: '{MM}/{DD} {HH}:{mm}',
+      plugins: [
+        function (hook, vm) {
+          hook.beforeEach(function (html) {
+            var url = 'https://github.com/imhomin/vapordoc/blob/master/docs/' + vm.route.file
+            var editHtml = '[:memo: Edit Document](' + url + ')\n'
 
+            return editHtml
+              + html
+              + '\n\n----\n\n'
+              + '<a href="https://www.vaporcn.com" target="_blank" style="color: inherit; font-weight: normal; text-decoration: none;">Powered by Vapor中国</a>'
+          })
+        },
+        function (hook) {
+        var footer = [
+          '<hr/>',
+          '<footer>',
+          '<span><a href="https://www.vaporcn.com" target="_blank">Vapor中国  &copy;2018. </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;QQ群号:565526983 </span>',
+          '</footer>'
+        ].join('')
+        hook.afterEach(function (html) {
+          return html + footer
+        })
+      }
+      ]
     }
   </script>
   <script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
+  <script src="//unpkg.com/docsify/lib/plugins/ga.min.js"></script>
+  <script src="//unpkg.com/prismjs/components/prism-bash.min.js"></script>
+  <script src="//unpkg.com/prismjs/components/prism-markdown.min.js"></script>
+  <script src="//unpkg.com/prismjs/components/prism-nginx.min.js"></script>
 </body>
 
 </html>
