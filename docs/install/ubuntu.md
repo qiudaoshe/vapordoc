@@ -1,12 +1,12 @@
-# Install on Ubuntu
+# Ubuntu 平台
 
-Installing Vapor on Ubuntu only takes a couple of minutes.
+在 Ubuntu 平台安装 Vapor 只需要几分钟即可.
 
-## Supported
+## 支持版本
 
-Vapor supports the same versions of Ubuntu that Swift supports.
+Vapor 与 Swift 支持同样版本的 Ubuntu.
 
-| Version | Codename     |
+| 版本     | 代号         |
 |---------|--------------|
 | 16.10   | Yakkety Yak  |
 | 16.04   | Xenial Xerus |
@@ -14,28 +14,28 @@ Vapor supports the same versions of Ubuntu that Swift supports.
 
 ## APT Repo
 
-Add Vapor's APT repo to get access to all of Vapor's Ubuntu packages.
+为 Vapor 添加 APT repo 来使用 Vapor 的 Ubuntu package.
 
-### Quick Script
+### 快速安装脚本
 
-Easily add Vapor's APT repo with this handy script.
+运行以下脚本就可以轻松添加 APT repo.
 
 ```sh
 eval "$(curl -sL https://apt.vapor.sh)"
 ```
 
 !!! tip
-	This command requires `curl` which can be installed using `sudo apt-get install curl`
+	这个指令需要 `curl` 支持, 可以运行 `sudo apt-get install curl` 来安装.
 
 ### Dockerfile
-When configuring Ubuntu from a Dockerfile, adding the APT repo can be done via this command:
+如果使用 Dockerfile 配置 Ubuntu, 可以通过以下指令完成 APT repo 的添加:
 ```sh
 RUN /bin/bash -c "$(wget -qO- https://apt.vapor.sh)"
 ```
 
-### Manual
+### 手动添加
 
-Or add the repo manually.
+也可以以下指令手动完成添加.
 
 ```sh
 wget -q https://repo.vapor.codes/apt/keyring.gpg -O- | sudo apt-key add -
@@ -43,17 +43,17 @@ echo "deb https://repo.vapor.codes/apt $(lsb_release -sc) main" | sudo tee /etc/
 sudo apt-get update
 ```
 
-## Install Vapor
+## 安装 Vapor
 
-Now that you have added Vapor's APT repo, you can install the required dependencies.
+现在你已经添加好了 Vapor 的 APT repo, 执行以下指令,你可以开始安装需要的依赖了.
 
 ```sh
 sudo apt-get install swift vapor
 ```
 
-### Verify Installation
+### 验证安装
 
-Double check everything worked with the following commands.
+执行下指令, 来再次验证安装成功.
 
 #### Swift
 
@@ -61,27 +61,27 @@ Double check everything worked with the following commands.
 swift --version
 ```
 
-You should see output similar to:
+你会看到这样的输出信息:
 
 ```sh
 Apple Swift version 4.1.0 (swiftlang-900.0.69.2 clang-900.0.38)
 Target: x86_64-apple-macosx10.9
 ```
 
-Vapor requires Swift 4.1 or greater.
+Vapor 支持 Swift 4.1 或更高版本.
 
-#### Vapor Toolbox
+#### Vapor 工具箱
 
 ```sh
 vapor --help
 ```
 
-You should see a long list of available commands.
+你会看到可使用指令的列表.
 
-## Done
+## 完成
 
-Now that you have installed Vapor, create your first app in [Getting Started &rarr; Hello, world](../getting-started/hello-world.md).
+现在你完成了使用 Vapor 的必要安装, 前往 [入门 &rarr; Hello, world](../getting-started/hello-world.md) 来创建你的app.
 
 ## Swift.org
 
-Check out [Swift.org](https://swift.org)'s guide to [using downloads](https://swift.org/download/#using-downloads) if you need more detailed instructions for installing Swift 4.1.
+如果想要获得关于 Swift 4.1 的更多使用指导, 查看 [Swift.org](https://swift.org) 的 [Using Downloads](https://swift.org/download/#using-downloads).
