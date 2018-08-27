@@ -1,58 +1,53 @@
 # Hello, world
 
-Now that you've installed Vapor, let's create your first Vapor app!
-This guide will take you step by step through creating a new project, building, and running it.
+到了这里, 你已经安装好了 Vapor, 让我们着手创建你的第一个 Vapor App 吧! 跟随指引, 一步步的创建, 编译, 运行你的 app.
 
-## New Project
+## 新建工程
 
-The first step is to create a new Vapor project on your computer.
-For this guide, we will call the project `Hello`.
+第一步, 在你的电脑上创建 Vapor 工程, 我们称它为 `Hello`.
 
-Open up your terminal, and use [Vapor Toolbox's `new`](toolbox.md#new) command.
+打开终端, 执行 [Vapor 工具箱 `new`](toolbox.md#new) 指令.
 
 ```sh
 vapor new Hello --branch=beta
 ```
 
-!!! beta
-    At the time of this writing, Vapor 3 is not officially released. You can omit the `--branch=beta` flag once [3.0.0](https://github.com/vapor/vapor/releases/tag/3.0.0) is released.
-
-Once that finishes, change into the newly created directory.
+指令执行完成后, 切换到新建的目录中.
 
 ```sh
 cd Hello
 ```
 
-## Generate Xcode Project
+## 生成 Xcode 工程
 
-Let's now use the [Vapor Toolbox's `xcode`](toolbox#xcode) command to generate an Xcode project.
-This will allow us to build and run our app from inside of Xcode, just like an iOS app.
+运行 [Vapor 工具箱 `xcode`](toolbox#xcode) 指令来生成 Xcode 工程
+
+这样, 我们就可以像开发 iOS app 一样, 通过 Xcode 编译和运行.
 
 ```sh
 vapor xcode
 ```
 
-The toolbox will ask you if you'd like to open Xcode automatically, select `yes`.
+Vapor 工具箱会询问你, 是否设置为自动打开 Xcode, 选择 `yes`.
 
-## Build & Run
+## 编译 和 运行
 
-You should now have Xcode open and running. Select the [run scheme](xcode.md#run) from the scheme menu,
-then click the play button.
+你现在应该打开了 Xcode, 从 scheme 列表中选择 [Run](xcode.md#run), 然后点击 play 运行,
 
-You should see the terminal pop up at the bottom of the screen.
+你会在 Xcode 底部的终端窗口中看见:
 
 ```sh
 Server starting on http://localhost:8080
 ```
 
-## Visit Localhost
+## 访问 localhost
 
-Open your web browser, and visit <a href="http://localhost:8080/hello" target="_blank">localhost:8080/hello &rarr;</a>
+打开浏览器, 访问 <a href="http://localhost:8080/hello" target="_blank">localhost:8080/hello &rarr;</a>
 
-You should see the following page.
+你会看见如下页面:
 
 ```html
 Hello, world!
 ```
 
-Congratulations on creating, building, and running your first Vapor app! 🎉
+恭喜, 你成功地创建, 编译, 运行了你的第一个 Vapor app! 🎉
