@@ -8,7 +8,7 @@ Vapor 是 Swift 语言中使用最广泛的 Web 框架, 它优雅而且简洁, �
 
 如果你是第一次使用 Vapor, 前往 [安装 &rarr; macOS](install/macos.md) 章节, 跟随指引安装 Swift 和 Vapor.
 
-当你完成 Vapor 的安装, 跟随 [入门 &rarr; Hello, world](getting-started/hello-world.md) 章节的指引来创建你的第一个 Vapor 程序吧!
+当你完成 Vapor 的安装, 跟随 [进阶 &rarr; Hello, world](getting-started/hello-world.md) 章节的指引来创建你的第一个 Vapor 程序吧!
 
 ## 喜欢 Vapor ?
 
@@ -22,7 +22,7 @@ Vapor 的团队在努力让它更好(而且免费哦), 请 [给他们一颗小�
 
 | 名字           | 描述                                      | 链接                                                            |
 |----------------|---------------------------------------|-----------------------------------------------------------------|
-| Vapor Slack    | 和 5000 名 Vapor 开发者交流.            | [访问 &rarr;](http://vapor.team)                                 |
+| Vapor Slack    | 和 5000 余名 Vapor 开发者交流.            | [访问 &rarr;](http://vapor.team)                                 |
 | API 文档        | 根据代码注释自动生成的文档.               | [访问 &rarr;](http://api.vapor.codes)                            |
 | Stack Overflow | `vapor` 标签下的相关 QA.                | [访问 &rarr;](http://stackoverflow.com/questions/tagged/vapor)   |
 | 源代码          | 了解 Vapor 底层工作方式.                 | [访问 &rarr;](https://github.com/vapor/vapor)                    |

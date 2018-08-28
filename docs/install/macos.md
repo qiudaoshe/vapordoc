@@ -56,4 +56,4 @@ vapor --help
 
 ## 完成
 
-现在你完成了使用 Vapor 的必要安装, 前往 [入门 &rarr; Hello, world](../getting-started/hello-world.md) 来创建你的app.
+现在你完成了使用 Vapor 的必要安装, 前往 [进阶 &rarr; Hello, world](../getting-started/hello-world.md) 来创建你的app.
