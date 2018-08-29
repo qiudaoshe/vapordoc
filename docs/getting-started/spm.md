@@ -1,21 +1,20 @@
 # Managing your project
 
-The Swift Package Manager (SPM for short) is used for building your project's source code and dependencies. 
-It's a similar idea to Cocoapods, Ruby gems, and NPM. Most of the time the [Vapor Toolbox](toolbox.md) will 
-interact with SPM on your behalf. However, it's important to understand the basics.
+Vapor 使用 Swift Package Manager (简称 SPM) 构建工程的源码和依赖. SPM 和 Cocoapods, Ruby gems 和 NPM 类似. 在大部分应用场景下, [Vapor Toolbox](toolbox.md) 代替你来与 SPM 沟通, 了解底层运作仍然很重要.
 
 !!! tip
-    Learn more about SPM on <a href="https://swift.org/package-manager/" target="_blank">Swift.org &rarr;</a> 
+    了解更多关于 SPM <a href="https://swift.org/package-manager/" target="_blank">Swift.org &rarr;</a> 
 
-## Package Manifest
+## 包清单
 
-The first place SPM looks in your project is the package manfiest. This should always be located in the root
-directory of your project and named `Package.swift`.
+SPM 会首先检查你文件中的包清单: 位于工程根目录下的 `Package.swift`.
 
 ### Dependencies
 
 Dependencies are other SPM packages that your package relies on. All Vapor applications rely on the Vapor package,
 but you can add as many other dependencies as you want.
+
+Dependencies 中列出的是你工程中 SPM 管理的包, 所有 Vapor 工程都依赖 Vapor 包, 你可以在这里添加你需要的依赖.
 
 ```swift
 // swift-tools-version:4.0
@@ -34,14 +33,16 @@ let package = Package(
 In the above example, you can see <a href="https://github.com/vapor/vapor" target="_blank">vapor/vapor &rarr;</a> version 3.0
 or later is a dependency of this package.
 When you add a dependency to your package, you must next signal which [targets](#targets) depend on
-the newly available modules.
+the newly available modules. 
+
+上面的示例代码中, 3.0 或更高版本的 <a href="https://github.com/vapor/vapor" target="_blank">vapor/vapor &rarr;</a> 是这个软件包的依赖, 当你添加依赖的时候, 你需要确保依赖是最近可用的, 并且标注你的 [targets](#targets)
 
 !!! warning
-    Anytime you modify the package manifest, call `vapor update` to effect the changes.
+    每次修改包清单的时候, 执行 `vapor update` 来更新.
 
 ### Targets
 
-Targets are all of the modules, executables, and tests that your package contains. 
+Targets 是你软件包中所有的模块, 可执行文件和单元测试. 
 
 ```swift
 // swift-tools-version:4.0
@@ -58,19 +59,15 @@ let package = Package(
 )
 ```
 
-Most Vapor apps will have three targets, although you can add as many as you like to organize your code.
-Each target declares which modules it depends on. You must add module names here in order to `import` them in your code.
-A target can depend on other targets in your project or any modules exposed by packages you've added to
-the [main dependencies](#dependencies) array.
+大部分 Vapor app 包含三个 target, 你也可以按需添加. 每个 target 声明他依赖的模块, 你需要在添加模块名字以将它 `引入` 到你的代码中. 一个 target 可以依赖你工程中或者已经添加到[dependencies](#dependencies) 列表中的target.
 
-!!! tip
-    Executable targets (targets that contain a `main.swift` file) cannot be imported by other modules.
-    This is why Vapor has both an `App` and a `Run` target.
-    Any code you include in `App` can be tested in the `AppTests`.
+!!! tip 
+    可执行 target(包含 `main.swift` 文件的 target) 不可以被其他模块 `引入`, 所以 Vapor 有两个 target `App` 和 `Run`. 而从上述代码可以看出, `App` 由 `AppTests` 进行测试.
 
-## Folder Structure
+## 文件结构
 
 Below is the typical folder structure for an SPM package.
+下面是典型的 SPM 文件结构
 
 ```
 .
@@ -84,12 +81,12 @@ Below is the typical folder structure for an SPM package.
 └── Package.swift
 ```
 
-Each `.target` corresponds to a folder in the `Sources` folder. 
-Each `.testTarget` corresponds to a folder in the `Tests` folder.
+每个 `.target` 对应 `Sources` 文件夹下的目录, 
+每个 `.testTarget` 对应 `Tests` 文件夹下的目录.
 
-## Troubleshooting
+## 问题解决
 
-If you are experiencing problems with SPM, sometimes cleaning your project can help.
+如果你使用 SPM 时遇到问题, 清理工程有时会有帮助.
 
 ```sh
 vapor clean

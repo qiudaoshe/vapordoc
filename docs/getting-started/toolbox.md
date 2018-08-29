@@ -1,53 +1,53 @@
-# Install Toolbox
+# 安装 Toolbox
 
-Vapor's command line interface provides shortcuts and assistance for common tasks.
+Vapor 的命令行界面为常见任务提供了快捷工具
 
 <img width="682" alt="Vapor Toolbox" src="https://cloud.githubusercontent.com/assets/1342803/23553208/26af9a0e-0020-11e7-8ed5-1ce09407ae8e.png">
 
-Help prints useful information about available commands and flags.
+Help 指令列出可用指令的说明和提示信息.
 
 ```sh
 vapor --help
 ```
 
-You can also run the `--help` option on any Toolbox command.
+你也可以在其他指令中运行 `--help` 来获得提示.
 
 ```sh
 vapor new --help
 ```
 
-The `--help` flag should be your goto for learning about the toolbox as it is the most up-to-date.
+`--help` 指令应该作为你学习 Vapor 工具箱的第一选择, 因为它是紧跟更新版本的.
 
 ## New
 
-The Toolbox's most important feature is helping you create a new project.
+创建新项目
 
 ```sh
 vapor new <name>
 ```
 
-Just pass the name of your project as the first argument to the `new` command.
+`new` 指令的参数对应你的工程名称
 
 !!! note
-    Project names should be <a href="http://wiki.c2.com/?PascalCase" target="_blank">PascalCase &rarr;</a>, like `HelloWorld` or `MyProject`.
+    工程名称应该遵循 <a href="http://wiki.c2.com/?PascalCase" target="_blank">Pascal 命名法 &rarr;</a>, 比如 `HelloWorld` 或 `MyProject`.
 
-### Templates
+### 模板
 
-By default, Vapor will create your new project from the API template. You can choose
-a different template by passing the `--template` flag.
+Vapor 默认使用 API 模板创建新项目, 你也可以通过 `--template` 来选择不同的模板.
 
-| Name | Flag             | Description                       |
-|------|------------------|-----------------------------------|
-| API  | `--template=api` | JSON API with Fluent database.    |
-| Web  | `--template=web` | HTML website with Leaf templates. |
+| Name | Flag                       | 描述                               |
+|------|----------------------------|-----------------------------------|
+| API  | `--template=api`           | JSON API with Fluent database.    |
+| Web  | `--template=web`           | HTML website with Leaf templates. |
+| Auth | `--template=auth-template` | JSON API with Fluent DB and Auth. |
 
 !!! info
-    There are lots of unofficial Vapor templates on GitHub under the <a href="https://github.com/search?utf8=✓&q=topic%3Avapor+topic%3Atemplate&type=Repositories" target="_blank">`vapor` + `template` topcs &rarr;</a>.
-    You can use these by passing the full GitHub URL to the `--template` option.
+    GitHub 上有很多非官方的 Vapor 模板 <a href="https://github.com/search?utf8=✓&q=topic%3Avapor+topic%3Atemplate&type=Repositories" target="_blank">`vapor` + `template` topcs &rarr;</a>.
+    你可以将 GitHub URL 设置给 `--template` 来选择它们.
 
 ## Build & Run
 
-You can use the toolbox to build and run your Vapor app.
+编译和运行命令.
 
 ```sh
 vapor build
@@ -55,13 +55,13 @@ vapor run
 ```
 
 !!! tip
-    We recommend building and running through [Xcode](xcode.md) if you have a Mac. 
-    It's a bit faster and you can set breakpoints! 
-    Just use `vapor xcode` to generate an Xcode project.
+    如果你使用 Mac 我们建议使用 [Xcode](xcode.md) 来编译和运行 Vapor app. 
+    因为这样速度更快, 而且你可以查看崩溃点! 
+    执行 `vapor xcode` 来生成 Xcode 项目.
 
 ## Updating
 
-The toolbox should be updated by the package manager it was installed with.
+Vapor Toolbox 可以通过以下方法更新.
 
 ### Homebrew
 
