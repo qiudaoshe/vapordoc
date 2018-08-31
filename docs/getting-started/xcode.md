@@ -1,36 +1,35 @@
 # Xcode
 
-If you're on a Mac, you can develop your Vapor project using Xcode. 
-You can build, run, and stop your server from within Xcode, as well as use breakpoints and instruments to debug your code.
+如果你使用 Mac 平台开发, 那么就可以使用 Xcode 开发, 通过 Xcode 可以编译, 运行和停止服务, 还可以使用 breakpoints 和 instruments 来调试代码.
 
 <img width="1072" alt="Xcode 9 running Vapor" src="https://user-images.githubusercontent.com/1342803/32910761-1f8dd56e-cad8-11e7-9869-feccf89f775e.png">
 
-Xcode is a great way to develop Vapor apps, but you can use any text editor you like.
+使用 Xcode 开发 Vapor app 是很棒的选择, 但不是唯一, 你也可以使用其他编辑器.
 
-## Generate Project
+## 生成 Xcode 工程
 
-To use Xcode, you just need to generate an Xcode project using [Vapor Toolbox](toolbox.md).
+为了能够使用 Xcode 开发, 你只需要执行 [Vapor 工具箱](toolbox.md) 指令.
 
 ```sh
 vapor xcode
 ```
 
-!!! tip
-	Don't worry about comitting the generated Xcode Project to git, just generate a new
-	one whenever you need it.
+!!! tip	
+	不用担心提交生成的 Xcode 项目到 git, 只需要在使用的时候生成新的 Xcode 即可.
 
-## Run
+## 运行
 
-To build and run your Vapor app, first make sure you have the `Run` scheme selected from the schemes menu.
-Also make sure to select "My Mac" as the device.
+编译和运行 Vapor app之前, 首先在 scheme 列表中选择 `Run`, 然后在设备列表中选择 `My Mac`
 
 <img width="434" alt="Run Scheme" src="https://user-images.githubusercontent.com/1342803/32917883-944f3f30-caee-11e7-980f-860ee70bd873.png">
 
-Once that's selected, just click the play button or press `Command + R` on your keyboard.
+正确选择之后, 点击运行按钮或者按键盘快捷键 `Command + R`.
 
-## Test
+## 测试
 
 To run your unit tests, select the scheme ending in `-Package` and press `Command + U`.
 
+如果进行进行单元测试, 在 scheme 列表中选择 `<项目名>-Package`, 然后按键盘快捷键 `Command + U`
+
 !!! warning
-	There may be a few extraneous schemes in the dropdown menu. Ignore them!
+	在 scheme 列表中有一些无关的 scheme, 无视就好!

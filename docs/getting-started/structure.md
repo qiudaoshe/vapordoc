@@ -1,11 +1,10 @@
 # Structure
 
-This section explains the structure of a typical Vapor application to help get
-you familiar with where things go.
+本章对一个典型的 Vapor 项目的目录结构进行分析, 从而帮助你了解 Vapor 的项目组成.
 
-## Folder Structure
+## 目录结构
 
-Vapor's folder structure builds on top of [SPM's folder structure](spm#folder-structure).
+Vapor 的文件目录结构是建立在 [SPM 目录结构](spm#folder-structure) 之上的.
 
 ```
 .
@@ -24,76 +23,61 @@ Vapor's folder structure builds on top of [SPM's folder structure](spm#folder-st
 └── Package.swift
 ```
 
-Let's take a look at what each of these folders and files does.
+让我们了解一下每个目录和文件的作用.
 
 ## Public
 
-This folder contains any public files that will be served by your app.
-This is usually images, style sheets, and browser scripts.
+Public 目录包含 Vapor 将要响应外部请求并提供的公共文件, 包括图片, 网页样式列表和浏览器执行脚本等.
 
-Whenever Vapor responds to a request, it will first check if the requested
-item is in this folder. If it is, it skips your application logic and returns
-the file immediately.
+当 Vapor 响应请求时, 它自身会首先检查否在 Public 文件夹中存在请求项, 如果存在, Vapor 立即返回请求项, 而忽略 app 的程序逻辑.
 
-For example, a request to `localhost:8080/favicon.ico` will check to see
-if `Public/favicon.ico` exists. If it does, Vapor will return it.
+比如说, 一条 `localhost:8080/favicon.ico` 请求会检查 `Public/favicon.ico` 是否存在于 Public 中, 如果存在就会立即返回.
 
 ## Sources
 
-This folder contains all of the Swift source files for your project. 
-The top level folders (`App` and `Run`) reflect your package's modules, 
-as declared in the [package manifest](spm#targets).
+Sources 目录包含 Vapor 程序的 Swift 源文件, 第一层级目录 (`App` 和 `Run`) 对应声明在 [包清单](spm#targets) 中的 package.
 
 ### App
 
-This is the most important folder in your application, it's where all of
-the application logic goes!
+App 目录是 Vapor 程序最重要的, 所有的逻辑都将在这里实现.
 
 #### Controllers
 
-Controllers are great way of grouping together application logic. Most controllers
-have many functions that accept a request and return some sort of response.
+通过 controller 可以更好的组织程序, 大多数 controller 包含很多方法, 可以接收请求, 并且回应.
 
 !!! tip
-	Vapor supports, but does not enforce the MVC pattern
+	Vapor 支持, 单并不强制使用 MVC 设计模式
 
 #### Models
 
-The `Models` folder is a great place to store your [`Content`](content.md) structs or
-Fluent [`Model`](../fluent/models.md)s.
+Models 目录用来存放 [`Content`](content.md) 结构体, 或者 Fluent [`Model`](../fluent/models.md).
 
 #### boot.swift
 
-This file contains a function that will be called _after_ your application has booted,
-but _before_ it has started running. This is a great place do things that should happen 
-every time your application starts.
-
-You have access to the [`Application`](application.md) here which you can use to create
-any [services](application.md#services) you might need.
+这个文件的主方法在程序 boot _之后_, 运行 _之前_ 被调用, 一般在这里可以执行每次程序运行起来之前需要执行的代码.
+ 
+在这里你可以访问 [`Application`](application.md) 并用它来创建 [服务](application.md#services).
 
 #### configure.swift
 
-This file contains a function that receives the config, environment, and services for your
-application as input. This is a great place to make changes to your config or register 
-[services](application.md#services) to your application.
+这个文件包的主方法接收配置文件, 环境和程序接收的服务. 一般在这里更改服务器配置, 或者注册 [服务](application.md#services).
 
 #### routes.swift
 
-This file contains a function for adding routes to your router.
+这个文件的主方法是用来给 router 添加路由的.
 
-You will notice there's one example route in there that returns the "hello, world" response we saw earlier.
+你会发现模板已经帮你添加了一个示例路由, 它返回 "Hello, world!".
 
-You can create as many methods as you want to further organize your code. Just make sure to call them in this main route collection. 
+你可以在这里创建方法来更好的组织代码, 只要确保在这里被调用.
 
 ## Tests
 
-Each non-executable module in your `Sources` folder should have a corresponding `...Tests` folder.
+任何在 `Sources` 中不可执行的模块都应该对应一个 `...Tests` 目录.
 
 ### AppTests
 
-This folder contains the unit tests for code in your `App` module. 
-Learn more about testing in [Testing &rarr; Getting Started](../testing/getting-started.md).
+这个目录包含 `App` 模块的单元测试代码. 点击 [测试 &rarr; 入门](../testing/getting-started.md) 了解更多.
 
 ## Package.swift
 
-Finally is SPM's [package manifest](spm.md#package-manifest).
+SPM 的 [包清单](spm.md#package-manifest).
