@@ -1,8 +1,8 @@
 # Application
 
-Every Vapor project has an `Application`. You use the application to run your server and create any services you might need at boot time.
+每个 Vapor 工程都有一个 `Application(应用)`, 在 boot 期间通过 `Application ` 来运行服务器和创建服务.
 
-The best place to access the application is in your project's [`boot.swift`](structure.md#bootswift) file.
+在 [`boot.swift`](structure.md#bootswift) 中可以访问 `Application `.
 
 ```swift
 import Vapor
@@ -12,24 +12,24 @@ public func boot(_ app: Application) throws {
 }
 ```
 
-Unlike some other web frameworks, Vapor doesn't support statically accessing the application. If you need to access it from another class or struct, you should pass through a method or initializer.
+与其他网络框架不同, Vapor 不支持静态的访问 Application. 如果在其他类或者结构体中需要访问, 你需要传递一个方法或者初始程序.
 
-!!! info
-    Avoiding static access to variables helps make Vapor performant by preventing the need for thread-safe locks or semaphores.
+!!! info 
+    避免对变量的静态访问有助于 Vapor 的性能提升: 阻止线程锁和信号量.
 
 
 ## Services
 
-The application's main function is to boot your server. 
+Application 的主方法是用来 boot 服务的.
 
 ```swift
 try app.run()
 ```
 
-However, the application is also a container. You may use it to create services required to boot your application.
+Application 同时也是一个容器, 可以在 boot 的时候用来创建需要的服务.
 
 !!! warning
-    Do not use the application, or any services created from it, inside a route closure. Use the `Request` to create services instead.
+    不要在路由的闭包中直接使用 Application 或者由它创建的服务, 使用 `Request` 来创建服务.
 
 ```swift
 let client = try app.make(Client.self)
@@ -38,6 +38,6 @@ print(res) // Response
 ```
 
 !!! tip
-    It's okay to use `.wait()` here instead of `.map`/`.flatMap` because we are not inside of a route closure.
+    在这里可以使用 `,wait()` 来代替 `.map` 或者 `.flatMap`, 因为当前环境并不是在路由的闭包当中.
 
-Learn more about services in [Getting Started &rarr; Services](services.md).
+了解更多, 点击 [入门 &rarr; Services](services.md)
