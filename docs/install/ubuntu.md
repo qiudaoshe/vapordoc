@@ -24,8 +24,9 @@ Vapor 与 Swift 支持同样版本的 Ubuntu.
 eval "$(curl -sL https://apt.vapor.sh)"
 ```
 
-!!! tip
-	这个指令需要 `curl` 支持, 可以运行 `sudo apt-get install curl` 来安装.
+> tip
+>
+> 这个指令需要 `curl` 支持, 可以运行 `sudo apt-get install curl` 来安装.
 
 ### Dockerfile
 如果使用 Dockerfile 配置 Ubuntu, 可以通过以下指令完成 APT repo 的添加:

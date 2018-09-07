@@ -8,8 +8,9 @@
 
 <img width="1112" alt="Xcode 9.1" src="https://user-images.githubusercontent.com/1342803/32911091-1b55b434-cad9-11e7-8ab2-fbd7ea0084da.png">
 
-!!! 注意
-    当 Xcode 下载完成, 你需要打开并完成安装. 这可能需要花费一点时间.
+> 注意
+>
+> 当 Xcode 下载完成, 你需要打开并完成安装. 这可能需要花费一点时间.
 
 ### 验证安装
 
@@ -26,8 +27,8 @@ Apple Swift version 4.1.0 (swiftlang-900.0.69.2 clang-900.0.38)
 Target: x86_64-apple-macosx10.9
 ```
 
-!!! beta
-    如果你的 Xcode 是 beta 版本, 那么在" Xcode &rarr; Preference &rarr; Locations &rarr; Command Line Tools" 选项中选择你的 Xcode 版本.
+> beta
+> 如果你的 Xcode 是 beta 版本, 那么在" Xcode &rarr; Preference &rarr; Locations &rarr; Command Line Tools" 选项中选择你的 Xcode 版本.
 
 Vapor 支持 Swift 4.1 或更高版本.
 
@@ -41,8 +42,9 @@ Vapor 工具箱包含所有 Vapor 的依赖, 其中也包含创建新工程的�
 brew install vapor/tap/vapor
 ```
 
-!!! tip
-    如果你没有安装 Homebrew, 前往 <a href="https://brew.sh" target="_blank">brew.sh &rarr;</a>
+> tip
+>
+> 如果你没有安装 Homebrew, 前往 <a href="https://brew.sh" target="_blank">brew.sh &rarr;</a>
 
 ### 验证安装
 

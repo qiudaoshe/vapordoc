@@ -14,8 +14,9 @@
 vapor xcode
 ```
 
-!!! tip	
-	不用担心提交生成的 Xcode 项目到 git, 只需要在使用的时候生成新的 Xcode 即可.
+> tip	
+>
+> 不用担心提交生成的 Xcode 项目到 git, 只需要在使用的时候生成新的 Xcode 即可.
 
 ## 运行
 
@@ -27,9 +28,8 @@ vapor xcode
 
 ## 测试
 
-To run your unit tests, select the scheme ending in `-Package` and press `Command + U`.
-
 如果进行进行单元测试, 在 scheme 列表中选择 `<项目名>-Package`, 然后按键盘快捷键 `Command + U`
 
-!!! warning
-	在 scheme 列表中有一些无关的 scheme, 无视就好!
+> warning
+>
+> 在 scheme 列表中有一些无关的 scheme, 无视就好!

@@ -41,9 +41,11 @@ Vapor 默认使用 API 模板创建新项目, 你也可以通过 `--template` �
 | Web  | `--template=web`           | HTML website with Leaf templates. |
 | Auth | `--template=auth-template` | JSON API with Fluent DB and Auth. |
 
-!!! info
-    GitHub 上有很多非官方的 Vapor 模板 <a href="https://github.com/search?utf8=✓&q=topic%3Avapor+topic%3Atemplate&type=Repositories" target="_blank">`vapor` + `template` topcs &rarr;</a>.
-    你可以将 GitHub URL 设置给 `--template` 来选择它们.
+> info
+>
+> GitHub 上有很多非官方的 Vapor 模板 <a href="https://github.com/search?utf8=✓&q=topic%3Avapor+topic%3Atemplate&type=Repositories" target="_blank">`vapor` + `template` topcs &rarr;</a>.
+>
+> 你可以将 GitHub URL 设置给 `--template` 来选择它们.
 
 ## Build & Run
 
@@ -54,10 +56,13 @@ vapor build
 vapor run
 ```
 
-!!! tip
-    如果你使用 Mac 我们建议使用 [Xcode](xcode.md) 来编译和运行 Vapor app. 
-    因为这样速度更快, 而且你可以查看崩溃点! 
-    执行 `vapor xcode` 来生成 Xcode 项目.
+> tip
+>
+> 如果你使用 Mac 我们建议使用 [Xcode](xcode.md) 来编译和运行 Vapor app. 
+>
+> 因为这样速度更快, 而且你可以查看崩溃点! 
+>
+> 执行 `vapor xcode` 来生成 Xcode 项目.
 
 ## Updating
 

@@ -45,8 +45,9 @@ App 目录是 Vapor 程序最重要的, 所有的逻辑都将在这里实现.
 
 通过 controller 可以更好的组织程序, 大多数 controller 包含很多方法, 可以接收请求, 并且回应.
 
-!!! tip
-	Vapor 支持, 单并不强制使用 MVC 设计模式
+> tip
+>
+> Vapor 支持, 单并不强制使用 MVC 设计模式
 
 #### Models
 
@@ -55,7 +56,7 @@ Models 目录用来存放 [`Content`](content.md) 结构体, 或者 Fluent [`Mod
 #### boot.swift
 
 这个文件的主方法在程序 boot _之后_, 运行 _之前_ 被调用, 一般在这里可以执行每次程序运行起来之前需要执行的代码.
- 
+
 在这里你可以访问 [`Application`](application.md) 并用它来创建 [服务](application.md#services).
 
 #### configure.swift

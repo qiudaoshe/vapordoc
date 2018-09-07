@@ -20,8 +20,9 @@ final class HelloController {
 
 控制器的方法总是应该接收一个 `Request`, 并且返回 `ResponseEncodable ` 类型数据.
 
-!!! note
-    [Futures](async.md) 的期望值是 `ResponseEncodable` (比如 `Future<String>`), 而 Future 本身也是 `ResponseEncodable`.
+> note
+>
+>  [Futures](async.md) 的期望值是 `ResponseEncodable` (比如 `Future<String>`), 而 Future 本身也是 `ResponseEncodable`.
 
 使用控制器时, 我们只要简单的初始化它, 然后调用一个路由.
 
