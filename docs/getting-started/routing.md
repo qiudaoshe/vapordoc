@@ -1,36 +1,34 @@
 # Routing
 
-Routing is the process of finding the appropriate response to an incoming request.
+路由的作用是为即将到来的请求查找适合的回应.
 
-## Making a Router
+## 创建路由
 
-In Vapor the default Router is the `EngineRouter`. You can implement custom routers by implementing one conforming to the `Router` protocol.
+Vapor 中的默认路由是 `EngineRouter`, 通过遵守 `Router` 协议就可以创建自定义路由.
 
 ```swift
 let router = try EngineRouter.default()
 ```
+路由一般在 [`configure.swift`](structure.md#configureswift) 中定义.
 
-This is usually done in your [`configure.swift`](structure.md#configureswift) file.
+## 注册路由
 
-## Registering a route
-
-Imagine you want to return a list of users when someone visits `GET /users`. Leaving authorization aside, that would look something like this.
+想象一下, 在有人访问 `GET /users` 的时候返回用户列表, 在不考虑权限的情况下, 路由可能会是这样:
 
 ```swift
 router.get("users") { req in
     return // fetch the users
 }
 ```
-
-In Vapor, routing is usually done using the `.get`, `.put`, `.post`, `.patch` and `.delete` shorthands. You can supply the path as `/` or comma-separated strings. We recommend comma separated, as it's more readable.
+Vapor 中, 路由一般以 `.get`, `.put`, `.post`, `.patch` 和 `.delete` 声明. 你可以用 `/` 或者以逗号分隔的字符串来表示路径, 从可读性考虑我们推荐使用逗号分隔.
 
 ```swift
 router.get("path", "to", "something") { ... }
 ```
 
-## Routes
+## 路由
 
-The best place to add routes is in the [`routes.swift`](structure.md#routesswift) file. Use the router supplied as a parameter to this function to register your routes.
+添加路由的最好的地方是在 [`routes.swift`](structure.md#routesswift) 文件中. 使用作为参数传递的 router 来注册你自己的路由.
 
 ```swift
 import Vapor
@@ -44,13 +42,11 @@ public func routes(_ router: Router) throws {
     /// ...
 }
 ```
+查看 [入门 &rarr; Content](content.md) 学习路由的闭包可以返回什么值.
 
-See [Getting Started &rarr; Content](content.md) for more information about what can be returned in a route closure.
+## 参数
 
-## Parameters
-
-Sometimes you may want one of the components of your route path to be dynamic. This is often used when
-you want to get an item with a supplied identifier, e.g., `GET /users/:id`
+有些时候, 你想要你的路径一部分是动态的, 比如你想要根据传入的 ID 来获取数据: `GET /users/:id`
 
 ```swift
 router.get("users", Int.parameter) { req -> String in
@@ -58,12 +54,12 @@ router.get("users", Int.parameter) { req -> String in
     return "requested id #\(id)"
 }
 ```
+不传递字符串, 而是传递你希望的参数 _类型_, 在这个例子中, `User` 有 `Int` 类型的 ID.
 
-Instead of passing a string, pass the _type_ of parameter you expect. In this case, our `User` has an `Int` ID.
+>tip
 
-!!! tip
-    You can define your own [custom parameter types](../routing/parameters.md) as well.
+>你也可以定义自己的 [自定义参数类型](../routing/parameters.md)
 
-## After registering your routes
+## 注册路由之后
 
-After registering your routes you must register the Router as a [Getting Started &rarr; Services](services.md)
+在注册路由之后, 你需要将路由注册为一个 [入门 &rarr; 服务](services.md)

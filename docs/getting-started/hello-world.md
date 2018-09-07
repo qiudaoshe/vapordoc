@@ -6,7 +6,7 @@
 
 第一步, 在你的电脑上创建 Vapor 工程, 我们称它为 `Hello`.
 
-打开终端, 执行 [Vapor 工具箱 `new`](toolbox.md#new) 指令.
+打开终端, 执行 [Vapor 工具箱 `new`](toolbox.md#New) 指令.
 
 ```sh
 vapor new Hello --branch=beta

@@ -1,69 +1,68 @@
 # Async
 
-You may have noticed some APIs in Vapor expect or return a generic `Future` type. If this is your first time hearing about futures, they might seem a little confusing at first. But don't worry, Vapor makes them easy to use.
+你可能发现了 Vapor 的一些 API 期望或者立即返回 `Future` 类型的值, 如果这是你第一次接触 future, 你可能会感到困惑, 但是别担心, 在 Vapor 中使用 future 很简单.
 
-This guide will give you a quick introduction to working with Async. Check out [Async → Overview](../async/overview.md) for more information.
+我们会指引你快速上手了解异步任务, 查看 [Async → Overview](../async/overview.md) 获取更多信息.
 
 ## Futures
 
-Since `Future`s work asynchronously, we must use closures to interact with and transform their values. Just like optionals in Swift, futures can be mapped and flat-mapped. 
+因为 `Future` 是异步工作的, 我们需要使用闭包回调来使用它们, 就想 Swift 中的可选类型, future 可以 使用 map(映射) 或者 flatmap(平面映射) 解析.
 
 ### Map
 
-The `.map(to:_:)` method allows you to transform the future's value to another value. The closure provided will be called once the `Future`'s data becomes available. 
+`.map(to:_:)` 函数可以将 future 的值转变为其他值, 闭包会在 `Future` 数据可用的时候回调.
 
 ```swift
-/// Assume we get a future string back from some API
+/// 假定我们从某个 API 获得了 Future<String>
 let futureString: Future<String> = ...
 
-/// Map the future string to an integer
+/// 将 future 解析为 Int
 let futureInt = futureString.map(to: Int.self) { string in
     print(string) // The actual String
     return Int(string) ?? 0
 }
 
-/// We now have a future integer
+/// 现在我们得到了一个 Int 值
 print(futureInt) // Future<Int>
 ```
 
 ### Flat Map
 
-The `.flatMap(to:_:)` method allows you to transform the future's value to another future value. It gets the name "flat" map because it is what allows you to avoid creating nested futures (e.g., `Future<Future<T>>`). In other words, it helps you keep your futures flat.
+`.flatMap(to:_:)` 函数可以将一个 future 值转变为另一个 future 值, 之所以叫做 "平面"映射, 是因为它帮你避免创建了嵌套式的 future (比如, `Future<Future<T>>`).
 
 ```swift
-/// Assume we get a future string back from some API
+/// 假定我们从某个 API 获得了 Future<String>
 let futureString: Future<String> = ...
 
-/// Assume we have created an HTTP client
+/// 假定我们创建了一个 HTTP 客户端
 let client: Client = ... 
 
-/// Flat-map the future string to a future response
+/// 将 future 字符串映射为 future 响应
 let futureResponse = futureString.flatMap(to: Response.self) { string in
     return client.get(string) // Future<Response>
 }
 
-/// We now have a future response
+/// 现在我们得到了一个 future 响应
 print(futureResponse) // Future<Response>
 ```
 
-!!! info
-    If we instead used `.map(to:_:)` in the above example, we would have ended up with a `Future<Future<Response>>`. Yikes!
+>info
+>
+>如果在上面示例代码中使用 `.map(to:_:)`, 我们就会获得一个 `Future<Future<Response>>`, 呀!
     
 
 ### Chaining
 
-The great part about transformations on futures is that they can be chained. This allows you to express many conversions and subtasks easily.
-
-Let's modify the examples from above to see how we can take advantage of chaining.
+future 的转换中, 最棒的事情就是它支持链接, 你可以轻松地表示多个转换或者子任务.
 
 ```swift
-/// Assume we get a future string back from some API
+/// 假定我们从某个 API 获得了 Future<String>
 let futureString: Future<String> = ...
 
-/// Assume we have created an HTTP client
+/// 假定我们创建了一个 HTTP 客户端
 let client: Client = ... 
 
-/// Transform the string to a url, then to a response
+/// 将字符串转变为 url, 然后转变为一个响应.
 let futureResponse = futureString.map(to: URL.self) { string in
     guard let url = URL(string: string) else {
         throw Abort(.badRequest, reason: "Invalid URL string: \(string)")
@@ -76,30 +75,30 @@ let futureResponse = futureString.map(to: URL.self) { string in
 print(futureResponse) // Future<Response>
 ```
 
-After the initial call to map, there is a temporary `Future<URL>` created. This future is then immediately flat-mapped to a `Future<Response>`
+在初始的映射创建了一个临时的 `Future<URL>`, 然后它立即被平面映射为一个 `Future<Response>`.
 
-!!! tip
-    You can `throw` errors inside of map and flat-map closures. This will result in the future failing with the error thrown.
+>tip
+>
+>你可以在 map 或者 flatmap 的闭包中 `throw` 错误, 这会导致 future 在抛出错误的时候失败.
 
 ## Worker
 
-You may see methods in Vapor that have an `on: Worker` parameter. These are usually methods that perform asynchronous work and require access to the `EventLoop`.
+你也许看见过 Vapor 的函数带有 `on:Worker` 参数, 这些一般是异步执行的函数, 并且需要 `EventLoop` 的权限.
 
-The most common `Worker`s you will interact with in Vapor are:
+最常接触的 `Worker`:
 
 - `Application`
 - `Request`
 - `Response`
 
 ```swift
-/// Assume we have a Request and some ViewRenderer
+/// 假定我们有一个 Request 和 ViewRenderer
 let req: Request = ...
 let view: ViewRenderer = ...
 
-/// Render the view, using the Request as a worker. 
-/// This ensures the async work happens on the correct event loop.
-///
-/// This assumes the signature is:
+/// 将 Request 作为 worker 来渲染视图. 
+/// 这保证了异步任务工作在正确的事件回路中.
+/// 这个方法声明为:
 /// func render(_: String, on: Worker)
 view.render("home.html", on: req)
 ```

@@ -1,12 +1,12 @@
 # Content
 
-In Vapor 3, all content types (JSON, protobuf, URLEncodedForm, [Multipart](../multipart/getting-started.md), etc) are treated the same. All you need to parse and serialize content is a `Codable` class or struct.
+Vapor 3 对所有的 content 类型 (JSON, protobuf, URLEncodedForm, [Multipart](../multipart/getting-started.md 等) 都一视同仁, 你只需要一个 `Codable` 类或者结构体.
 
-For this introduction, we will use JSON as an example. But keep in mind the API is the same for any supported content type.
+为了说明, 我们将使用 JSON 举例. 同样, 使用的 API 对任何支持的 content 类型都适用.
 
 ## Request
 
-Let's take a look at how you would parse the following HTTP request.
+让我们看看如何解析下面的 HTTP 请求.
 
 ```http
 POST /login HTTP/1.1
@@ -18,7 +18,7 @@ Content-Type: application/json
 }
 ```
 
-First, create a struct or class that represents the data you expect.
+首先, 创建一个结构体或者类来表示你想要的数据.
 
 ```swift
 import Vapor
@@ -29,8 +29,8 @@ struct LoginRequest: Content {
 }
 ```
 
-Then simply conform this struct or class to `Content`.
-Now we are ready to decode that HTTP request.
+然后让这个结构体或者类遵守 `Content` 协议.
+现在我们做好准备解析这个 HTTP 请求了.
 
 ```swift
 router.post("login") { req -> Future<HTTPStatus> in
@@ -42,11 +42,11 @@ router.post("login") { req -> Future<HTTPStatus> in
 }
 ```
 
-We use `.map(to:)` here since `req.content.decode(_:)` returns a [future](async.md).
+在这里使用 `.map(to:)` 因为 `req.content.decode(_:)` 返回值是 [future](async.md).
 
 ## Response
 
-Let's take a look at how you would create the following HTTP response.
+让我们看看该怎么创建接下来的 HTTP 响应.
 
 ```http
 HTTP/1.1 200 OK
@@ -58,7 +58,7 @@ Content-Type: application/json
 }
 ```
 
-Just like decoding, first create a struct or class that represents the data that you are expecting.
+类似解析步骤, 先创建一个结构体或者类来表示你想要的数据.
 
 ```swift
 import Vapor
@@ -69,7 +69,8 @@ struct User: Content {
 }
 ```
 
-Then just conform this struct or class to `Content`. Now we are ready to encode that HTTP response.
+然后让这个结构体或者类遵守 `Content` 协议.
+现在我们做好准备序列化这个 HTTP 响应了.
 
 ```swift
 router.get("user") { req -> User in
@@ -80,10 +81,9 @@ router.get("user") { req -> User in
 }
 ```
 
-Great job! Now you know how to encode and decode data in Vapor. 
+现在你知道在 Vapor 中如何序列化和解析数据了!
 
-!!! tip
-    See [Vapor &rarr; Content](../vapor/content.md) for more in-depth information.
-
-The next section in this guide is [Async](async.md).
+>tip
+>
+>查看 [Vapor &rarr; Content](../vapor/content.md) 获得更多信息.
 
