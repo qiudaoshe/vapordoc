@@ -27,23 +27,23 @@ Vapor 的文件目录结构是建立在 [SPM 目录结构](spm#folder-structure)
 
 ## Public
 
-Public 目录包含 Vapor 将要响应外部请求并提供的公共文件, 包括图片, 网页样式列表和浏览器执行脚本等.
+Public 目录包含由应用程序提供的公共文件, 通常包括图片, 网页样式列表和浏览器脚本等.
 
-当 Vapor 响应请求时, 它自身会首先检查否在 Public 文件夹中存在请求项, 如果存在, Vapor 立即返回请求项, 而忽略 app 的程序逻辑.
+当 Vapor 响应请求时, 它首先检查请求项是否在此文件夹中, 如果是, 则跳过应用程序逻辑并立即返回文件.
 
-比如说, 一条 `localhost:8080/favicon.ico` 请求会检查 `Public/favicon.ico` 是否存在于 Public 中, 如果存在就会立即返回.
+比如说, 对 `localhost:8080/favicon.ico` 的请求会检查 `Public/favicon.ico` 是否存, 如果存在 Vapor 将返回它.
 
 ## Sources
 
-Sources 目录包含 Vapor 程序的 Swift 源文件, 第一层级目录 (`App` 和 `Run`) 对应声明在 [包清单](spm#targets) 中的 package.
+Sources 目录包含项目的所有 Swift 源文件, 顶级目录 (`App` 和 `Run`) 反应程序包模块, 就像声明在 [包清单](spm#targets) 中的那样.
 
 ### App
 
-App 目录是 Vapor 程序最重要的, 所有的逻辑都将在这里实现.
+App 目录是应用程序最重要的文件夹, 它是所有的应用程序逻辑的所在.
 
 #### Controllers
 
-通过 controller 可以更好的组织程序, 大多数 controller 包含很多方法, 可以接收请求, 并且回应.
+controller 是将应用程序逻辑组合在一起的好方法, 大多数 controller 都有很多接收请求, 并且返回某种响应的函数.
 
 > tip
 >
@@ -51,33 +51,33 @@ App 目录是 Vapor 程序最重要的, 所有的逻辑都将在这里实现.
 
 #### Models
 
-Models 目录用来存放 [`Content`](content.md) 结构体, 或者 Fluent [`Model`](../fluent/models.md).
+Models 目录是存储 [`Content`](content.md) 结构体, 或者 Fluent [`Model`](../fluent/models.md) 模型的好地方.
 
 #### boot.swift
 
-这个文件的主方法在程序 boot _之后_, 运行 _之前_ 被调用, 一般在这里可以执行每次程序运行起来之前需要执行的代码.
+这个文件包括一个在程序启动 _之后_, 运行 _之前_ 被调用的函数, 这是一个很好的地方做每次应用程序启动时应该发生的事情.
 
 在这里你可以访问 [`Application`](application.md) 并用它来创建 [服务](application.md#services).
 
 #### configure.swift
 
-这个文件包的主方法接收配置文件, 环境和程序接收的服务. 一般在这里更改服务器配置, 或者注册 [服务](application.md#services).
+这个文件包含一个函数, 该函数接收应用程序的配置, 环境和服务作为输入. 这是更改配置或向应用程序注册 [服务](application.md#services) 的好地方.
 
 #### routes.swift
 
-这个文件的主方法是用来给 router 添加路由的.
+这个文件包含用于向路由器添加路由的功能.
 
-你会发现模板已经帮你添加了一个示例路由, 它返回 "Hello, world!".
+你会注意到模板已经帮你添加了一个示例路由返回 "Hello, world!" 响应.
 
-你可以在这里创建方法来更好的组织代码, 只要确保在这里被调用.
+你可以根据需要创建任意数量的函数来进一步组织代码, 只需确保在这个主要路由集合中调用他们.
 
 ## Tests
 
-任何在 `Sources` 中不可执行的模块都应该对应一个 `...Tests` 目录.
+每一个 `Sources` 文件夹中的中不可执行的模块都有相应的 `...Tests` 目录.
 
 ### AppTests
 
-这个目录包含 `App` 模块的单元测试代码. 点击 [测试 &rarr; 入门](../testing/getting-started.md) 了解更多.
+这个目录包含 `App` 模块代码的单元测试. 点击 [测试 &rarr; 入门](../testing/getting-started.md) 了解更多.
 
 ## Package.swift
 

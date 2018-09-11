@@ -1,8 +1,8 @@
 # Application
 
-每个 Vapor 工程都有一个 `Application(应用)`, 在 boot 期间通过 `Application ` 来运行服务器和创建服务.
+每个 Vapor 工程都有一个 `Application(应用程序)`, 你可以通过 `Application ` 运行服务器和创建任务启动时可能需要的服务.
 
-在 [`boot.swift`](structure.md#bootswift) 中可以访问 `Application `.
+访问 `Application` 的最佳位置是 [`boot.swift`](structure.md#bootswift) 文件.
 
 ```swift
 import Vapor
@@ -12,26 +12,26 @@ public func boot(_ app: Application) throws {
 }
 ```
 
-与其他网络框架不同, Vapor 不支持静态的访问 Application. 如果在其他类或者结构体中需要访问, 你需要传递一个方法或者初始程序.
+与其他网络框架不同, Vapor 不支持静态的访问应用程序. 如果需要从另一个类或者结构体中需要访问它, 你需要通过方法或者初始器.
 
 > info
 >
-> 避免对变量的静态访问有助于 Vapor 的性能提升: 阻止线程锁和信号量.
+> 避免对变量的静态访问有助于通过防止对线程锁和信号量的需要来提升 Vapor 的性能:
 
 
 ## Services
 
-Application 的主方法是用来 boot 服务的.
+Application 的主方法是用来启动服务器的.
 
 ```swift
 try app.run()
 ```
 
-Application 同时也是一个容器, 可以在 boot 的时候用来创建需要的服务.
+Application 同时也是一个容器, 可以用来创建应用程序启动所需的服务.
 
 > warning
 >
-> 不要在路由的闭包中直接使用 Application 或者由它创建的服务, 使用 `Request` 来创建服务.
+> 不要在路由闭包中直接使用 Application 或者从中创建的任何服务, 使用 `Request` 来创建服务.
 
 ```swift
 let client = try app.make(Client.self)

@@ -1,18 +1,18 @@
 # Hello, world
 
-到了这里, 你已经安装好了 Vapor, 让我们着手创建你的第一个 Vapor App 吧! 跟随指引, 一步步的创建, 编译, 运行你的 app.
+到这里你已经安装好了 Vapor, 让我们创建你的第一个 Vapor App! 本指南会带你逐步创建新项目, 编译和运行.
 
 ## 新建工程
 
-第一步, 在你的电脑上创建 Vapor 工程, 我们称它为 `Hello`.
+第一步是在你的电脑上新建 Vapor 项目, 在本指南中我们称它为 `Hello`.
 
-打开终端, 执行 [Vapor 工具箱 `new`](toolbox.md#New) 指令.
+打开终端, 执行 [Vapor Toolbox `新建`](toolbox.md#new) 指令.
 
 ```sh
-vapor new Hello --branch=beta
+vapor new Hello
 ```
 
-指令执行完成后, 切换到新建的目录中.
+指令执行完成, 切换到新建的目录中.
 
 ```sh
 cd Hello
@@ -20,15 +20,13 @@ cd Hello
 
 ## 生成 Xcode 工程
 
-运行 [Vapor 工具箱 `xcode`](toolbox#xcode) 指令来生成 Xcode 工程
-
-这样, 我们就可以像开发 iOS app 一样, 通过 Xcode 编译和运行.
+运行 [Vapor Toolbox `xcode`](xcode.md) 指令来生成 Xcode 工程. 这让我们可以像开发 iOS app 一样, 通过 Xcode 编译和运行.
 
 ```sh
 vapor xcode
 ```
 
-Vapor 工具箱会询问你, 是否设置为自动打开 Xcode, 选择 `yes`.
+toolbox 会询问你, 是否自动打开 Xcode, 选择 `yes`.
 
 ## 编译 和 运行
 
@@ -40,7 +38,7 @@ Vapor 工具箱会询问你, 是否设置为自动打开 Xcode, 选择 `yes`.
 Server starting on http://localhost:8080
 ```
 
-## 访问 localhost
+## 访问本地主机
 
 打开浏览器, 访问 <a href="http://localhost:8080/hello" target="_blank">localhost:8080/hello &rarr;</a>
 
@@ -50,4 +48,4 @@ Server starting on http://localhost:8080
 Hello, world!
 ```
 
-恭喜, 你成功地创建, 编译, 运行了你的第一个 Vapor app! 🎉
+恭喜, 你成功地创建, 编译和运行了你的第一个 Vapor app! 🎉

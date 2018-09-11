@@ -12,7 +12,7 @@ SPM 会首先检查你文件中的包清单: 位于工程根目录下的 `Packag
 
 ### Dependencies
 
-Dependencies 中列出的是你工程中 SPM 管理的包, 所有 Vapor 工程都依赖 Vapor 包, 你可以在这里添加你需要的依赖.
+Dependencies 中列出的是你的程序包依赖的其他 SPM 程序包, 所有 Vapor 应用程序都依赖 Vapor 软件包, 但你可以根据需求添加其他依赖项.
 
 ```swift
 // swift-tools-version:4.0
@@ -28,15 +28,15 @@ let package = Package(
 )
 ```
 
- 上面的示例代码中, 3.0 或更高版本的 <a href="https://github.com/vapor/vapor" target="_blank">vapor/vapor &rarr;</a> 是这个软件包的依赖, 当你添加依赖的时候, 你需要确保依赖是最近可用的, 并且标注你的 [targets](#targets)
+ 上面的示例代码中, 3.0 或更高版本的 <a href="https://github.com/vapor/vapor" target="_blank">vapor/vapor &rarr;</a> 是这个程序包的依赖项, 向程序包中添加依赖项时, 需要标注那些 [targets](#targets) 依赖哪些最新可用的模块.
 
 > warning
 >
-> 每次修改包清单的时候, 执行 `vapor update` 来更新.
+> 每次修改包清单的时候, 调用 `vapor update` 来实现更改.
 
 ### Targets
 
-Targets 是你软件包中所有的模块, 可执行文件和单元测试. 
+Target 是你程序包中所有的模块, 可执行文件和单元测试. 
 
 ```swift
 // swift-tools-version:4.0
@@ -53,11 +53,11 @@ let package = Package(
 )
 ```
 
-大部分 Vapor app 包含三个 target, 你也可以按需添加. 每个 target 声明他依赖的模块, 你需要在添加模块名字以将它 `引入` 到你的代码中. 一个 target 可以依赖你工程中或者已经添加到[dependencies](#dependencies) 列表中的target.
+大部分 Vapor app 包含三个 target, 尽管你也可以添加任意多的 target 来组织代码. 每个 target 声明他依赖的模块, 你必须在这里添加模块名字以将它 `引入` 到你的代码中. 一个 target 可以依赖项目中其他 target, 也可以依赖已经添加到 [main dependencies](#dependencies) 列表的包所暴露的 任何 target.
 
 > tip 
 >
-> 可执行 target(包含 `main.swift` 文件的 target) 不可以被其他模块 `引入`, 所以 Vapor 有两个 target `App` 和 `Run`. 而从上述代码可以看出, `App` 由 `AppTests` 进行测试.
+> 可执行 target(包含 `main.swift` 文件的 target) 不可以被其他模块 `引入`, 所以 Vapor 有两个 target `App` 和 `Run`. 任何 `App` 中的代码都可以在 `AppTests` 中测试.
 
 ## 文件结构
 
@@ -75,12 +75,12 @@ let package = Package(
 └── Package.swift
 ```
 
-每个 `.target` 对应 `Sources` 文件夹下的目录, 
-每个 `.testTarget` 对应 `Tests` 文件夹下的目录.
+每个 `.target` 对应 `Sources` 文件夹中的文件夹, 
+每个 `.testTarget` 对应 `Tests` 文件夹中的文件夹.
 
 ## 问题解决
 
-如果你使用 SPM 时遇到问题, 清理工程有时会有帮助.
+如果你使用 SPM 时遇到问题, 清理项目有时会有帮助.
 
 ```sh
 vapor clean

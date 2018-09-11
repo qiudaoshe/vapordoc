@@ -71,7 +71,7 @@ Target: x86_64-apple-macosx10.9
 
 Vapor 支持 Swift 4.1 或更高版本.
 
-#### Vapor 工具箱
+#### Vapor Toolbox
 
 ```sh
 vapor --help

@@ -1,26 +1,26 @@
 # Routing
 
-路由的作用是为即将到来的请求查找适合的回应.
+路由是查找传入请求的适当响应的过程.
 
 ## 创建路由
 
-Vapor 中的默认路由是 `EngineRouter`, 通过遵守 `Router` 协议就可以创建自定义路由.
+Vapor 中的默认路由是 `EngineRouter`, 你可以通过实现路由器协议的路由来实现自定义路由.
 
 ```swift
 let router = try EngineRouter.default()
 ```
-路由一般在 [`configure.swift`](structure.md#configureswift) 中定义.
+这通常在 [`configure.swift`](structure.md#configureswift) 文件中实现.
 
 ## 注册路由
 
-想象一下, 在有人访问 `GET /users` 的时候返回用户列表, 在不考虑权限的情况下, 路由可能会是这样:
+想象一下当有人访问 `GET /users` 的时候想要返回用户列表, 抛开授权, 路由可能会是这样:
 
 ```swift
 router.get("users") { req in
     return // fetch the users
 }
 ```
-Vapor 中, 路由一般以 `.get`, `.put`, `.post`, `.patch` 和 `.delete` 声明. 你可以用 `/` 或者以逗号分隔的字符串来表示路径, 从可读性考虑我们推荐使用逗号分隔.
+Vapor 中, 路由通常由 `.get`, `.put`, `.post`, `.patch` 和 `.delete` 实现. 你可以用 `/` 或者以逗号分隔的字符串来表示路径, 从可读性考虑我们推荐使用逗号分隔.
 
 ```swift
 router.get("path", "to", "something") { ... }
@@ -28,7 +28,7 @@ router.get("path", "to", "something") { ... }
 
 ## 路由
 
-添加路由的最好的地方是在 [`routes.swift`](structure.md#routesswift) 文件中. 使用作为参数传递的 router 来注册你自己的路由.
+添加路由的最佳位置是 [`routes.swift`](structure.md#routesswift) 文件. 使用 `routes(_ router: Router)` 方法提供的路由器参数来注册路由.
 
 ```swift
 import Vapor
@@ -46,7 +46,7 @@ public func routes(_ router: Router) throws {
 
 ## 参数
 
-有些时候, 你想要你的路径一部分是动态的, 比如你想要根据传入的 ID 来获取数据: `GET /users/:id`
+有些时候你可能希望路由路径的某一部分是动态的, 比如你想要根据传入的 ID 来获取数据: `GET /users/:id`
 
 ```swift
 router.get("users", Int.parameter) { req -> String in

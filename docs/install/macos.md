@@ -34,9 +34,9 @@ Vapor 支持 Swift 4.1 或更高版本.
 
 ## 安装 Vapor
 
-现在你安装好了 Swift 4.1, 让我们安装 [Vapor 工具箱](../getting-started/toolbox.md).
+现在你安装好了 Swift 4.1, 让我们安装 [Vapor Toolbox](../getting-started/toolbox.md).
 
-Vapor 工具箱包含所有 Vapor 的依赖, 其中也包含创建新工程的命令行工具.
+toolbox 包含所有 Vapor 的依赖, 其中也包含创建新工程的命令行工具.
 
 ```sh
 brew install vapor/tap/vapor

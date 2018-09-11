@@ -16,20 +16,21 @@ vapor --help
 vapor new --help
 ```
 
-`--help` 指令应该作为你学习 Vapor 工具箱的第一选择, 因为它是紧跟更新版本的.
+`--help` 指令应该作为你学习 toolbox 的第一选择, 因为它跟随版本更新.
 
-## New
+## 新建
 
-创建新项目
+toolbox 的最重要功能就是协助创建新项目
 
 ```sh
 vapor new <name>
 ```
 
-`new` 指令的参数对应你的工程名称
+`new` 指令的参数对应你的项目名称
 
-!!! note
-    工程名称应该遵循 <a href="http://wiki.c2.com/?PascalCase" target="_blank">Pascal 命名法 &rarr;</a>, 比如 `HelloWorld` 或 `MyProject`.
+>note
+>
+>项目名称应该遵循 <a href="http://wiki.c2.com/?PascalCase" target="_blank">Pascal 命名法 &rarr;</a>, 比如 `HelloWorld` 或 `MyProject`.
 
 ### 模板
 
