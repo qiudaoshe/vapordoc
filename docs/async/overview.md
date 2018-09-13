@@ -1,27 +1,27 @@
 # Async Overview
 
-You may have noticed some APIs in Vapor expect or return a generic `Future` type. If this is your first time hearing about futures, they might seem a little confusing at first. But don't worry, Vapor makes them easy to use.
+你可能已经注意到 Vapor 的某些 API 需要或者返回通用类型 `Future`, 如果这是你第一次接触 future (期货), 你可能会感到困惑, 但是别担心, 在 Vapor 中使用 future 很简单.
 
-Promises and futures are related, but distinct types. Promises are used to _create_ futures. Most of the time, you will be working with futures returned by Vapor's APIs and you will not need to worry about creating promises.
+promise(承诺) 和 future(期货) 是相关的, 但是类型不同. promise 是用来 _创建_ future. 大多数情况, 你会使用 Vapor 的 API 所返回的 future, 而且不用担心创建 promise.
 
-|type     |description                                          |mutability|methods                                         |
+|类型     |描述                                          |可更改性|函数                                         |
 |---------|-----------------------------------------------------|----------|----------------------------------------------------|
-|`Future` |Reference to an object that may not be available yet.|read-only |`.map(to:_:)` `.flatMap(to:_:)` `do(_:)` `catch(_:)`|
-|`Promise`                                                     |A promise to provide some object asynchronously.     |read/write|`succeed(_:)` `fail(_:)`                            |
+|`Future` |引用可能尚不可用的对象.|只读 |`.map(to:_:)` `.flatMap(to:_:)` `do(_:)` `catch(_:)`|
+|`Promise`                                                     |承诺以异步方式提供一些对象.    |可读/写|`succeed(_:)` `fail(_:)`                            |
 
-Futures are an alternative to callback-based asynchronous APIs. Futures can be chained and transformed in ways that simple closures cannot, making them quite powerful.
+future 是基于回调的异步 API 的替代方案. 普通闭包不能链接和转换, 而 future 可以, 这让它们异常强大.
 
 ## Transforming
 
-Just like optionals in Swift, futures can be mapped and flat-mapped. These are the most common operations you will perform on futures.
+就像 Swift 中的可选类型, future 可以被 mapped(映射) 和 flat-mapped(平面映射). 这些是你可以在 future 上执行的的最常见操作.
 
-|method   |signature |description|
+|函数   |函数签名 |描述|
 |---------|------------------|-----|
-|`map`    |`to: U.Type, _: (T) -> U`        |Maps a future value to a different value.
-|`flatMap`|`to: U.Type, _: (T) -> Future<U>`|Maps a future value to different _future_ value.|
-|`transform`         |`to: U`                  |Maps a future to an already available value.|
+|`map`    |`to: U.Type, _: (T) -> U`        |将 _future_ 值映射为其他值.
+|`flatMap`|`to: U.Type, _: (T) -> Future<U>`|将一个 _future_ 值映射为另一个 _future_ 值.|
+|`transform`         |`to: U`                  |将 _future_ 值映射为已有值.|
 
-If you look at the method signatures for `map` and `flatMap` on `Optional<T>` and `Array<T>`, you will see that they are very similar to the methods available on `Future<T>`.
+如果你查看 `Optional<T>` 和 `Array<T>` 的方法 `map` 和 `flatMap` 的函数签名的话, 你会发现他们和 `Future<T>` 上的 `map` 和 `flatMap` 非常相似.
 
 ### Map
 

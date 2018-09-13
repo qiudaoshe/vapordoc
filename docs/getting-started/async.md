@@ -2,7 +2,7 @@
 
 你可能已经注意到 Vapor 的某些 API 需要或者返回通用类型 `Future`, 如果这是你第一次接触 future (期货), 你可能会感到困惑, 但是别担心, 在 Vapor 中使用 future 很简单.
 
-本指南喂你提供使用异步的快速入门, 查看 [Async → Overview](../async/overview.md) 获取更多信息.
+本指南为你提供使用异步的快速入门, 查看 [Async → Overview](../async/overview.md) 获取更多信息.
 
 ## Futures
 
