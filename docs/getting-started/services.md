@@ -1,15 +1,15 @@
 # Services
 
-服务是 Vapor 的一种 *依赖注入* (也叫 *控制反转*) 框架, 服务框架允许在程序中注册, 配置和初始化任何必要的东西.
+服务是 Vapor 的 *依赖注入* (也叫 *控制反转*) 框架, 服务框架允许您注册, 配置和初始化任何必要的东西.
 
 ## Container
 
 你与服务的大部分交互都经由一个容器, 这个容器包括:
 
 - [Services](#services): 已注册服务的集合.
-- [Config](#config): 声明特定服务偏好.
-- [Environment](#environment): 程序当前环境类型 (测试环境, 生产环境等).
-- [Worker](async.md#event-loop): 当前容器关联的时间循环.
+- [Config](#config): 声明某些服务优先于其他服务.
+- [Environment](#environment): 应用程序当前环境类型 (测试环境, 生产环境等).
+- [Worker](async.md#event-loop): 当前容器关联的事件循环.
 
 在 Vapor 中最常见的容器是:
 
@@ -18,11 +18,11 @@
 - `Response`
 
 
-你应当将 `Application ` 作为容器在 boot 的时候创建需要的服务, 将 `Request` 或者 `Response` 作为容器在回应请求的时候 (在 route 闭包或 controllers 中).
+你应当将 `Application ` 作为容器创建在启动应用的时候所需的服务, 将 `Request` 或者 `Response` 容器创建响应请求的服务 (在 route 闭包或 controllers 中).
 
 ### Make
 
-创建服务很简单, 只要使用容器调用 `.make(_:)`函数, 然后传入你需要的类型 (通常是 `Client` 协议类型).
+创建服务很简单, 只要使用容器调用 `.make(_:)` 函数, 然后传递你需要的类型 (通常是 `Client` 这样的协议类型).
 
 ```swift
 let client = try req.make(Client.self)
@@ -40,15 +40,15 @@ print(view) /// ViewRenderer, might be a LeafRenderer
 
 >tip
 >
->尝试尽可能依赖具体类型的协议, 这会让你的代码更容易被测试 (你可以轻松地替换代码块), 并且为你的代码解耦.
+>如果可以的话, 尝试依赖具体类型的协议, 这会让你的代码更容易被测试 (你可以轻松地替换功能), 并且为你的代码解耦.
 
 ## Services
 
-`Services` 结构体包含所有你注册过&mdash;或者你添加过的协议提供者的&mdash;的协议, 我们通常在 [`configure.swift`](structure.md#configureswift) 中对服务注册和配置. 
+`Services` 结构体包含所有你&mdash;或者你添加过的协议提供者的&mdash;已注册的所有服务, 我们通常在 [`configure.swift`](structure.md#configureswift) 中注册和配置你的服务. 
 
 ### Instance
 
-你可以使用 `.register(_:)` 注册初始化后的协议.
+你可以使用 `.register(_:)` 注册已初始化的服务实例.
 
 ```swift
 /// Create an in-memory SQLite database
@@ -58,7 +58,7 @@ let sqlite = SQLiteDatabase(storage: .memory)
 services.register(sqlite)
 ```
 
-服务注册之后, 它可以被 `Container` 创建.
+在你服务注册之后, 它可以供 `Container` 创建.
 
 ```swift
 let db = app.make(SQLiteDatabase.self)
@@ -88,17 +88,17 @@ print(router === engineRouter) // true
 
 ## Environment
 
-环境是用来在具体情境下动态改变 Vapor 程序的表现的. 比如说, 在你的程序配置好之后, 你想要更改数据库的用户名和密码, 这时 `Environment` 类型就让操作变得简单.
+环境是用来在具体情境下动态改变 Vapor 程序的行为方式. 比如说, 在你部署应用程序时为数据库使用不同的用户名和密码, 这时 `Environment` 类型就让管理变得容易.
 
-当你使用命令行工具运行 Vapor 程序, 你可以传入一个可选的 `env` 标志来具体说明当前环境. 环境类型默认为 `.development`.
+从命令行工具运行 Vapor 程序时, 你可以传递一个可选的 `env` 标志来指定环境. 环境类型默认为 `.development`.
 
 ```sh
 swift run Run --env prod
 ```
 
-在上面的示例代码中, 我们在 `.production` 环境中运行 Vapor, 这个环境的定义是 `isRelease = true`.
+在上面的示例代码中, 我们在 `.production(生产)` 环境中运行 Vapor, 这个环境的定义是 `isRelease = true`.
 
-你可以通过在 [`configure.swift`](structure.md#configureswift) 中配置的环境来动态注册服务.
+你可以使用传递给 [`configure.swift`](structure.md#configureswift) 的环境来动态注册服务.
 
 ```swift
 let sqlite: SQLiteDatabase
@@ -114,7 +114,7 @@ services.register(sqlite)
 
 >info
 >
->使用静态方法 `Environment.get(_:)` 获取表示进程环境的字符串.
+>使用静态方法 `Environment.get(_:)` 从进程环境获取字符串值.
 
 你也可以使用工厂方法`.register(_:)` 基于环境动态注册服务.
 

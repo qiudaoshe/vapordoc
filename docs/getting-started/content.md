@@ -1,8 +1,8 @@
 # Content
 
-Vapor 3 对所有的 content 类型 (JSON, protobuf, URLEncodedForm, [Multipart](../multipart/getting-started.md 等) 都一视同仁, 你只需要一个 `Codable` 类或者结构体.
+在 Vapor 3 中, 所有的内容类型 (JSON, protobuf, URLEncodedForm, [Multipart](../multipart/getting-started.md) 等) 都被视为相同, 解析和序列化所需的只是一个 `Codable` 类型或者结构体.
 
-为了说明, 我们将使用 JSON 举例. 同样, 使用的 API 对任何支持的 content 类型都适用.
+对于本指南, 我们将使用 JSON 举例. 但请记住, 对于任何支持的内容类型, 使用的 API 都是相同的.
 
 ## Request
 
@@ -18,7 +18,7 @@ Content-Type: application/json
 }
 ```
 
-首先, 创建一个结构体或者类来表示你想要的数据.
+首先, 创建一个表示你期望的数据的结构体或者类.
 
 ```swift
 import Vapor
@@ -29,7 +29,7 @@ struct LoginRequest: Content {
 }
 ```
 
-然后让这个结构体或者类遵守 `Content` 协议.
+然后简单地让这个结构体或者类遵守 `Content` 协议.
 现在我们做好准备解析这个 HTTP 请求了.
 
 ```swift
@@ -42,11 +42,11 @@ router.post("login") { req -> Future<HTTPStatus> in
 }
 ```
 
-在这里使用 `.map(to:)` 因为 `req.content.decode(_:)` 返回值是 [future](async.md).
+在这里使用 `.map(to:)` 因为 `req.content.decode(_:)` 返回一个 [future(期货)](async.md).
 
 ## Response
 
-让我们看看该怎么创建接下来的 HTTP 响应.
+让我们看看该怎么创建以下 HTTP 响应.
 
 ```http
 HTTP/1.1 200 OK
@@ -58,7 +58,7 @@ Content-Type: application/json
 }
 ```
 
-类似解析步骤, 先创建一个结构体或者类来表示你想要的数据.
+就像解析一样, 先创建一个表示你期望数据的结构体或者类.
 
 ```swift
 import Vapor

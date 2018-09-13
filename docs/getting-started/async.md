@@ -1,16 +1,16 @@
 # Async
 
-你可能发现了 Vapor 的一些 API 期望或者立即返回 `Future` 类型的值, 如果这是你第一次接触 future, 你可能会感到困惑, 但是别担心, 在 Vapor 中使用 future 很简单.
+你可能已经注意到 Vapor 的某些 API 需要或者返回通用类型 `Future`, 如果这是你第一次接触 future (期货), 你可能会感到困惑, 但是别担心, 在 Vapor 中使用 future 很简单.
 
-我们会指引你快速上手了解异步任务, 查看 [Async → Overview](../async/overview.md) 获取更多信息.
+本指南喂你提供使用异步的快速入门, 查看 [Async → Overview](../async/overview.md) 获取更多信息.
 
 ## Futures
 
-因为 `Future` 是异步工作的, 我们需要使用闭包回调来使用它们, 就想 Swift 中的可选类型, future 可以 使用 map(映射) 或者 flatmap(平面映射) 解析.
+因为 `Future` 是异步工作的, 我们需要使用闭包来与它们交互和使用它们的值, 就像 Swift 中的可选类型, future(期货) 可以被 map(映射) 或者 flatmap(平面映射).
 
 ### Map
 
-`.map(to:_:)` 函数可以将 future 的值转变为其他值, 闭包会在 `Future` 数据可用的时候回调.
+`.map(to:_:)` 函数允许你将期货的值转化为另一个值, 一旦期货数据可用, 闭包将会调用.
 
 ```swift
 /// 假定我们从某个 API 获得了 Future<String>
@@ -28,7 +28,7 @@ print(futureInt) // Future<Int>
 
 ### Flat Map
 
-`.flatMap(to:_:)` 函数可以将一个 future 值转变为另一个 future 值, 之所以叫做 "平面"映射, 是因为它帮你避免创建了嵌套式的 future (比如, `Future<Future<T>>`).
+`.flatMap(to:_:)` 函数允许你将一个期货值转换为另一个期货值, 之所以叫做 "平面"映射, 是因为它帮你避免创建了嵌套式的期货 (比如, `Future<Future<T>>`).
 
 ```swift
 /// 假定我们从某个 API 获得了 Future<String>
