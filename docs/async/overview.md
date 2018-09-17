@@ -25,7 +25,7 @@ future 是基于回调的异步 API 的替代方案. 普通闭包不能链接和
 
 ### Map
 
-The `.map(to:_:)` method allows you to transform the future's value to another value. Because the future's value may not be available yet (it may be the result of an asynchronous task) we must provide a closure to accept the value.
+`.map(to:_:)` 函数允许你将 future 的值转化为另一个值. 因为 future 值可能还不可用(它可能是异步任务的结果), 我们必须提供一个闭包来接受该值.
 
 ```swift
 /// Assume we get a future string back from some API
@@ -43,7 +43,7 @@ print(futureInt) // Future<Int>
 
 ### Flat Map
 
-The `.flatMap(to:_:)` method allows you to transform the future's value to another future value. It gets the name "flat" map because it is what allows you to avoid creating nested futures (e.g., `Future<Future<T>>`). In other words, it helps you keep your generic futures flat.
+`.flatMap(to:_:)` 函数允许你将一个 future 值转化为另一个 future 值. 它之所以被叫做 "平面", 是因为它可以让你避免创建嵌套的 future (例如, `Future<Future<T>>`). 换句话说, 它帮你朱保持 future 平衡.
 
 ```swift
 /// Assume we get a future string back from some API
@@ -61,15 +61,17 @@ let futureResponse = futureString.flatMap(to: Response.self) { string in
 print(futureResponse) // Future<Response>
 ```
 
-!!! info
-    If we instead used `.map(to:_:)` in the above example, we would have ended up with a `Future<Future<Response>>`. Yikes!
-    
+>info
+>
+>如果在上面示例代码中使用 `.map(to:_:)`, 我们就会获得一个 `Future<Future<Response>>`, 呀!
+
 ### Transform
 
-The `.transform(_:)` method allows you to modify a future's value, ignoring the existing value. This is especially useful for transforming the results of `Future<Void>` where the actual value of the future is not important.
+`.transform(_:)` 函数允许你修改一个 future 的值, 而忽视现有的值. 这对于转换 `Future<Void>` 的结果非常有用, 其中 future 的实际值并不重要.
 
-!!! tip
-    `Future<Void>`, sometimes called a signal, is a future whose sole purpose is to notify you of completion or failure of some async operation.
+>tip
+>
+>`Future<Void>`, 有时称之为信号, 是一个 furue, 其唯一目的是通知你某些异步操作的完成或者失败.
 
 ```swift
 /// Assume we get a void future back from some API
@@ -80,13 +82,13 @@ let futureStatus = userDidSave.transform(to: HTTPStatus.ok)
 print(futureStatus) // Future<HTTPStatus>
 ```   
 
-Even though we have supplied an already-available value to `transform`, this is still a _transformation_. The future will not complete until all previous futures have completed (or failed).
+尽管已经为 `transform` 提供了一个已经可用的值, 它仍然是 _转化_. 在所有之前的 future 完成 (或失败) 之前, future 不会完成.
 
 ### Chaining
 
-The great part about transformations on futures is that they can be chained. This allows you to express many conversions and subtasks easily.
+关于 future 中的转化的重要的部分就是他们可以链接. 这允许你轻松地表达许多转换和子任务.
 
-Let's modify the examples from above to see how we can take advantage of chaining.
+让我们修改上面的示例代码, 来看看我们利用链接.
 
 ```swift
 /// Assume we get a future string back from some API
@@ -108,18 +110,19 @@ let futureResponse = futureString.map(to: URL.self) { string in
 print(futureResponse) // Future<Response>
 ```
 
-After the initial call to map, there is a temporary `Future<URL>` created. This future is then immediately flat-mapped to a `Future<Response>`
+在初始调用 `map` 后, 有一个临时 `Future<URL>` 被创建. 然后这个 future 立即被平面映射为 `Future<Response>`.
 
-!!! tip
-    You can `throw` errors inside of map and flat-map closures. This will result in the future failing with the error thrown.
+>tip
+>
+>你可以在 map 和 flat-map 闭包内部 `抛出` 错误. 这会导致 future 失败并且抛出错误.
     
 ## Future
 
-Let's take a look at some other, less commonly used methods on `Future<T>`.
+让我们看看 `Future<T>` 中其他一些不常用的函数.
 
 ### Do / Catch
 
-Similar to Swift's `do` / `catch` syntax, futures have a `do` and `catch` method for awaiting the future's result.
+与 Swift 中的 `do` / `catch` 语法相似, future 也有 `do` 和 `catch` 函数来等待 future 结果.
 
 ```swift
 /// Assume we get a future string back from some API
@@ -132,12 +135,13 @@ futureString.do { string in
 }
 ```
 
-!!! info
-    `.do` and `.catch` work together. If you forget `.catch`, the compiler will warn you about an unused result. Don't forget to handle the error case!
+>info
+>
+> `.do` 和 `.catch` 是成对出现的. 如果你忘记 `.catch`, 编译器会警告你未使用的结果. 不要忘记错误处理.
 
 ### Always
 
-You can use `always` to add a callback that will be executed whether the future succeeds or fails.
+你可以使用 `always` 添加一个在 future 成功或失败执行的回调.
 
 ```swift
 /// Assume we get a future string back from some API
@@ -148,12 +152,13 @@ futureString.always {
 }
 ```
 
-!!! note
-    You can add as many callbacks to a future as you want.
+>note
+>
+>你可以根据需要在 future 上添加任意多的回调.
     
 ### Wait
 
-You can use `.wait()` to synchronously wait for the future to be completed. Since a future may fail, this call is throwing.
+你可以使用 `.wait()` 来异步地等待 future 完成. 因为 future 可能会失败, 这个函数可以抛出错误.
 
 ```swift
 /// Assume we get a future string back from some API
@@ -164,15 +169,15 @@ let string = try futureString.wait()
 print(string) /// String
 ```
 
-!!! warning
-    Do not use this method in route closures or controllers. Read the section about [Blocking](#blocking) for more information.
-
-    
+>warning
+>
+>不要在路由闭包或者控制器中使用这个方法. 阅读 [Blocking](#blocking) 章节了解更多,
+  
 ## Promise
 
-Most of the time, you will be transforming futures returned by calls to Vapor's APIs. However, at some point you may need to create a promise of your own.
+大多数情况下, 你将通过调用 Vapor API 来改变返回的 future. 但是, 在有些时候你可能需要创建你自己的 promise.
 
-To create a promise, you will need access to an `EventLoop`. All containers in Vapor have an `eventLoop` property that you can use. Most commonly, this will be the current `Request`.
+要创建 promise, 你需要访问 `EventLoop`. Vapor 中所有的容器都有一个 `eventLoop` 属性供你使用. 最常见的是当前的 `Request`.
 
 ```swift
 /// Create a new promise for some string
@@ -187,8 +192,9 @@ promiseString.succeed(result: "Hello")
 promiseString.fail(error: ...)
 ```
 
-!!! info
-    A promise can only be completed once. Any subsequent completions will be ignored.
+>info
+>
+>promise 只能被执行一次. 任何后续的执行都会被忽略.
     
 ### Thread Safety
 
@@ -196,38 +202,39 @@ Promises can be completed (`succeed(result:)` / `fail(error:)`) from any thread.
 
 ## Event Loop
 
-When your application boots, it will usually create one event loop for each core in the CPU it is running on. Each event loop has exactly one thread. If you are familiar with event loops from Node.js, the ones in Vapor are very similar. The only difference is that Vapor can run multiple event loops in one process since Swift supports multi-threading.
+当你的应用程序启动的时候, 它通常会为它运行的每个 CPU 内核创建一个事件循环. 每个事件循环只有一个线程. 如果你熟悉 Node.js 的事件循环, 它与 Vapor 中的非常相似. 唯一的区别是 Vapor 可以在一个进程中运行多个时间循环, 因为 Swift 支持多线程.
 
-Each time a client connects to your server, it will be assigned to one of the event loops. From that point on, all communication between the server and that client will happen on that same event loop (and by association, that event loop's thread). 
+每当一个客户端与你的服务器建立连接时, 它会分配给其中一个事件循环. 从那时起, 所有服务器和那个客户端之间的通信都会发生在同一个事件循环上(并与这个事件循环的线程建立联系).
 
-The event loop is responsible for keeping track of each connected client's state. If there is a request from the client waiting to be read, the event loop trigger a read notification, causing the data to be read. Once the entire request is read, any futures waiting for that request's data will be completed. 
+事件循环负责跟踪每个建立连接的客户端的状态. 如果有来自客户端的请求等待读取, 事件循环触发读取数据的通知. 一旦整个请求被读取, 任何等待这条请求数据的 future 都会完成.
 
 ### Worker
 
-Things that have access to an event loop are called `Workers`. Every container in Vapor is a worker. 
+有权访问事件循环的东西叫做 `Worker`. 每一个容器都有一个 worker.
 
-The most common containers you will interact with in Vapor are:
+最常用的用来与 Vapor 交互的容器有:
 
 - `Application`
 - `Request`
 - `Response`
 
-You can use the `.eventLoop` property on these containers to gain access to the event loop.
+你可以通过这些容器的 `.eventLoop` 属性访问事件循环.
 
 ```swift
 print(app.eventLoop) // EventLoop
 ```
 
-There are many methods in Vapor that require the current worker to be passed along. It will usually be labeled like `on: Worker`. If you are in a route closure or a controller, pass the current `Request` or `Response`. If you need a worker while booting your app, use the `Application`.
+Vapor 中有许多函数需要传递当前 worker. 通常都会被标记为 `on: Worker`. 如果你在一个路由闭包或控制器中, 传递当前 `Request` 或 `Response`. 如果在启动应用程序时需要 worker, 使用 `Application`.
 
 ### Blocking
 
-An absolutely critical rule is the following:
+请严格遵守:
 
-!!! danger
-    Never make blocking calls directly on an event loop.
+>danger
+>
+>永远不要在事件循环上进行阻塞调用.
     
-An example of a blocking call would be something like `libc.sleep(_:)`.
+比如 `libc.sleep(_:)` 就是一个阻塞调用的例子.
 
 ```swift
 router.get("hello") { req in
@@ -239,9 +246,9 @@ router.get("hello") { req in
 }
 ```
 
-`sleep(_:)` is a command that blocks the current thread for the number of seconds supplied. If you do blocking work directly on an event loop, the event loop will be unable to respond to any other clients assigned to it for the duration of the blocking work. In other words, if you do `sleep(5)` on an event loop, all of the other clients connected to that event loop (possibly hundreds or thousands) will be delayed for at least 5 seconds.
+`sleep(_:)` 根据提供的秒数阻塞当前线程的指令. 如果你直接在事件循环上执行阻塞操作, 事件循环在阻塞操作持续时间内不会响应任何分配给它的客户端. 换句话说, 如果你在事件循环中执行 `sleep(5)`, 那么连接到该事件的其他所有客户端 (可能数百或数千) 将被延时至少 5 秒.
 
-Make sure to run any blocking work in the background. Use promises to notify the event loop when this work is done in a non-blocking way.
+确保在后台执行阻塞操作. 在工作完成的时候使用 promise 以非阻塞方式通知事件循环.
 
 ```swift
 router.get("hello") { req in
@@ -264,10 +271,11 @@ router.get("hello") { req in
     return promise.futureResult.transform(to: "Hello, world!")
 }
 ```
+    
+并非所有的阻塞操作和 `sleep(_:)` 一样明细. 如果你担心你的行为会导致阻塞, 请仔细研究函数或询问别人. 如果函数要执行磁盘或网络 IO 操作并使用同步 API, 都可能导致阻塞.
 
-Not all blocking calls will be as obvious as `sleep(_:)`. If you are suspicious that a call you are using may be blocking, research the method itself or ask someone. Chances are if the function is doing disk or network IO and uses a synchronous API (no callbacks or futures) it is blocking.
-
-!!! info
-    If doing blocking work is a central part of your application, you should consider using a `BlockingIOThreadPool` to control the number of threads you create to do blocking work. This will help you avoid starving your event loops from CPU time while blocking work is being done.
+>info
+>
+>如果执行阻塞操作是你应用程序的核心功能, 你应考虑使用 `BlockingIOThreadPool(阻塞 IO 线程池)` 来控制执行阻塞操作而创建的线程数.  这会帮你在执行阻塞操作的同时避免 CPU 时间的短缺.
 
     
