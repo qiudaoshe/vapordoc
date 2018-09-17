@@ -1,39 +1,37 @@
-# Vapor 开发文档
+# Vapor Documentation
 
-这是一篇 Vapor 的开发文档, Vapor 是可以运行在 macOS 和 Ubuntu 上的 Swift Web 框架, 并且支持很多 package.
+This is the documentation for Vapor, a Web Framework for Swift that works on macOS and Ubuntu, and all of the packages that Vapor offers.
 
-Vapor 是 Swift 语言中使用最广泛的 Web 框架, 它优雅而且简洁, 是你开发网站或 API 的不二选择.
+Vapor is the most used web framework for Swift. It provides a beautifully expressive and easy to use foundation for your next website or API.
 
-## 入门
+## Getting Started
 
-如果你是第一次使用 Vapor, 前往 [安装 &rarr; macOS](install/macos.md) 章节, 跟随指引安装 Swift 和 Vapor.
+If this is your first time using Vapor, head to the [Install &rarr; macOS](install/macos.md) section to install Swift and Vapor.
 
-当你完成 Vapor 的安装, 跟随 [进阶 &rarr; Hello, world](getting-started/hello-world.md) 章节的指引来创建你的第一个 Vapor 程序吧!
+Once you have Vapor installed, check out [Getting Started &rarr; Hello, world](getting-started/hello-world.md) to create your first Vapor app!
 
-## 喜欢 Vapor ?
+## Like Vapor?
 
-Vapor 的团队在努力让它更好(而且免费哦), 请 [给他们一颗小星星](https://github.com/vapor/vapor) 
+Our small team works hard to make Vapor awesome (and free). Support the framework by [starring Vapor on GitHub](https://github.com/vapor/vapor)
+or [donating $1 monthly](https://opencollective.com/vapor)&mdash;it helps us a lot. Thanks!
 
-或者 [每月捐献 $1](https://opencollective.com/vapor)&mdash;来表达支持!
+## Other Sources
 
-## 其他资源
+Here are some other great places to find information about Vapor.
 
-还有其他很棒的地方可以获得 Vapor 的相关内容.
+| name           | description                                      | link                                                            |
+|----------------|--------------------------------------------------|-----------------------------------------------------------------|
+| Vapor Slack    | Chat with ~5,000 Vapor developers.               | [visit &rarr;](http://vapor.team)                               |
+| API docs       | Auto-generated documentation from code comments. | [visit &rarr;](http://api.vapor.codes)                          |
+| Stack Overflow | Ask and answer questions with the `vapor` tag.   | [visit &rarr;](http://stackoverflow.com/questions/tagged/vapor) |
+| Source Code    | Learn how Vapor works under the hood.            | [visit &rarr;](https://github.com/vapor/vapor)                  |
+| GitHub Issues  | Report bugs or request features on GitHub.       | [visit &rarr;](https://github.com/vapor/vapor/issues)           |
 
-| 名字           | 描述                                      | 链接                                                            |
-|----------------|---------------------------------------|-----------------------------------------------------------------|
-| Vapor Slack    | 和 5000 余名 Vapor 开发者交流.            | [访问 &rarr;](http://vapor.team)                                 |
-| API 文档        | 根据代码注释自动生成的文档.               | [访问 &rarr;](http://api.vapor.codes)                            |
-| Stack Overflow | `vapor` 标签下的相关 QA.                | [访问 &rarr;](http://stackoverflow.com/questions/tagged/vapor)   |
-| 源代码          | 了解 Vapor 底层工作方式.                 | [访问 &rarr;](https://github.com/vapor/vapor)                    |
-| GitHub Issues  | 提交 Bug 或者改动.                      | [访问 &rarr;](https://github.com/vapor/vapor/issues)             |
+## Service Providers
 
-## 支持
+Vapor providers are a convenient way to add functionality to your Vapor projects.
+For a full list of providers, check out the [`vapor-service`](https://github.com/search?utf8=✓&q=topic%3Avapor-service&type=Repositories) tag on GitHub.
 
-Vapor 的开发者们也提供了很多实用的轮子. 
-完整列表, 请看 Github 上的 [`vapor-service`](https://github.com/search?utf8=✓&q=topic%3Avapor-service&type=Repositories) 标签
+## Authors
 
-
-## 作者
-
-[Tanner Nelson](mailto:tanner@vapor.codes), [Logan Wright](mailto:logan@vapor.codes), [Joannis Orlandos](mailto:joannis@qutheory.io), 以及 Vapor 团队的所有人.
+[Tanner Nelson](mailto:tanner@vapor.codes), [Logan Wright](mailto:logan@vapor.codes), [Joannis Orlandos](mailto:joannis@qutheory.io), and the hundreds of members of Vapor.
