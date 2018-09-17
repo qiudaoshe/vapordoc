@@ -3,9 +3,10 @@
 
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Vapor中文文档,Vapor教程</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <meta name="description" content="Description">
+  <meta name="keywords" conent="vapor,vapor中国,Vapor中文网,Vapor中国社区,Vapor论坛,swift服务端框架">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
   <link rel="stylesheet" href="//unpkg.com/docsify-copy-code/styles.css">
@@ -19,6 +20,7 @@
     window.$docsify = {
       name: 'Vapor中文文档',
       repo: 'https://github.com/imhomin/vapordoc',
+      homepage: 'index.md',
       loadSidebar: true,
       maxLevel: 10,
       auto2top: true,
@@ -37,7 +39,7 @@
         function (hook, vm) {
           hook.beforeEach(function (html) {
             var url = 'https://github.com/imhomin/vapordoc/blob/master/docs/' + vm.route.file
-            var editHtml = '[:memo: Edit Document](' + url + ')\n'
+            var editHtml = '[:memo: 一起翻译文档 >> go](' + url + ')\n'
 
             return editHtml
               + html
