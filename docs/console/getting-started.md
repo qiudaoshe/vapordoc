@@ -1,23 +1,24 @@
 # Getting Started with Console
 
-The Console module is provided as a part of Vapor's Console package ([vapor/console](https://github.com/vapor/console)).  This module provides APIs for performing console I/O including things like outputting stylized text, requesting user input, and displaying activity indicators like loading bars.
+Console (控制台) 模块是作为 Vapor 控制台包 ([vapor/console](https://github.com/vapor/console)) 的一部分提供的. 此模块提供用于执行控制台 I/O 的 API, 包括输出格式化文本, 请求用户输入, 显示诸如加载进度条等活动指示器.
 
-!!! tip
-    For an in-depth look at all of Console's APIs, check out the [Console API docs](https://api.vapor.codes/console/latest/Console/index.html).
+>tip
+>
+>想要深入了解所有的控制台 API, 请查看 [控制台 API 文档](https://api.vapor.codes/console/latest/Console/index.html)
 
-## Usage
+## 导入
 
-This package is included with Vapor and exported by default. You will have access to all `Console` APIs when you import `Vapor`.
+此包随 Vapor 一起提供并默认导出. 导入 `Vapor` 时你即拥有权限访问所有 `控制台` API.
 
 ```swift
 import Vapor // implies import Console
 ```
 
-### Standalone
+### 独立性
 
-The Console module, part of the larger Vapor Console package, can also be used on its own with any Swift project.
+控制台模块是庞大的 Vapor 包的一部分, 也可以独立运行于 Swift 项目.
 
-To include it in your package, add the following to your `Package.swift` file.
+要将它引入你的软件包, 将一下内容添加到你的 `Package.swift` 文件.
 
 ```swift
 // swift-tools-version:4.0
@@ -36,8 +37,8 @@ let package = Package(
 )
 ```
 
-Use `import Console` to access the APIs.
+使用 `import Console` 访问 API.
 
 ## Overview
 
-Continue to [Console → Overview](overview.md) for an overview of Console's features.
+继续访问 [Console → Overview](overview.md) 获得控制台预览.
