@@ -1,13 +1,14 @@
 # Getting Started with Command
 
-The Command module is provided as a part of Vapor's Console package ([vapor/console](https://github.com/vapor/console)).  This module provides APIs for creating command-line interfaces (CLIs). It's what powers the [Vapor Toolbox](../getting-started/toolbox.md).
+Command (命令) 模块作为 Vapor 控制台模块 ([vapor/console](https://github.com/vapor/console)) 的一部分提供的. 此模块提供创建命令行界面 (CLI) 的 API. 它支撑着 Vapor Toolbox](../getting-started/toolbox.md).
 
-!!! tip
-    For an in-depth look at all of Command's APIs, check out the [Command API docs](https://api.vapor.codes/console/latest/Command/index.html).
+>tip
+>
+>要深入了解命令模块所有 API, 查看 [Command API docs](https://api.vapor.codes/console/latest/Command/index.html).
 
 ## Usage
 
-This package is included with Vapor and exported by default. You will have access to all `Command` APIs when you import `Vapor`.
+此包随 Vapor 一起提供并默认导出. 导入 `Vapor` 时你即拥有权限访问所有 `命令` API.
 
 ```swift
 import Vapor // implies import Command
@@ -15,9 +16,9 @@ import Vapor // implies import Command
 
 ### Standalone
 
-The Command module, part of the larger Vapor Console package, can also be used on its own with any Swift project.
+命令模块是庞大的 Vapor 包的一部分, 也可以独立运行于 Swift 项目.
 
-To include it in your package, add the following to your `Package.swift` file.
+要将它引入你的软件包, 将一下内容添加到你的 `Package.swift` 文件.
 
 ```swift
 // swift-tools-version:4.0
@@ -36,8 +37,8 @@ let package = Package(
 )
 ```
 
-Use `import Command` to access the APIs.
+使用 `import Command` 访问 API.
 
 ## Overview
 
-Continue to [Command → Overview](overview.md) for an overview of Command's features.
+继续访问 [Command → Overview](overview.md) 获得控制台预览.
